@@ -13,11 +13,16 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
+
 public class SecurityConfiguration {
 
 	private final JwtAuthenticationFilter jwtAuthFilter;
 	private final AuthenticationProvider authenticaitonProvider;
+
+	public SecurityConfiguration(JwtAuthenticationFilter jwtAuthFilter, AuthenticationProvider authenticaitonProvider) {
+		this.jwtAuthFilter = jwtAuthFilter;
+		this.authenticaitonProvider = authenticaitonProvider;
+	}
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
